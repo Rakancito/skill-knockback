@@ -7,7 +7,11 @@ if (IS_SET(m_pkSk->dwFlag, SKILL_FLAG_REMOVE_GOOD_AFFECT))
 			if (IS_SET(m_pkSk->dwFlag, SKILL_FLAG_KNOCKBACK))
 			{
 				float fknockbackLength = 300; //Distance for KnockBack, defult 300
-        
+
+				if (pkChrVictim->IsNPC())
+					if (pkChrVictim->IsRaceFlag(RACE_FLAG_METIN))
+						fknockbackLength = 0;
+
 				float fx, fy;
 				float degree = GetDegreeFromPositionXY(m_pkChr->GetX(), m_pkChr->GetY(), pkChrVictim->GetX(), pkChrVictim->GetY());
 
